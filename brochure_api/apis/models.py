@@ -27,6 +27,7 @@ class Candidate(models.Model):
     phone_no = models.CharField(max_length=10, null=True, blank=True)
     email = models.CharField(max_length=100, null=True, blank=True)
     linkedIn = models.TextField(null=True, blank=True)
+    image_url = models.TextField(null=True, blank=True)
     introduction = models.TextField(null=True, blank=True)
 
     # ROLE 
