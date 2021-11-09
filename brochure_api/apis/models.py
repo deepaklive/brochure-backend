@@ -65,7 +65,6 @@ class Education(models.Model):
           return self.qualification
 
 
-
 class Certification(models.Model):
     candidate = models.ForeignKey(Candidate, related_name="certification", on_delete=models.CASCADE)
     certificate = models.CharField(max_length=100, null=False)
