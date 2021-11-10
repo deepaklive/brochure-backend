@@ -17,6 +17,7 @@ class Course(models.Model):
 
 
 class Candidate(models.Model):
+    id_email = models.CharField(max_length=100, null=True, blank=True) 
     course = models.PositiveIntegerField(null=False, default=0)
     name = models.CharField(max_length=50, null=False)
     rank = models.CharField(max_length=25, null=True, blank=True)
@@ -39,8 +40,6 @@ class Candidate(models.Model):
     admin_role = models.BooleanField(default=False)
     it_role = models.BooleanField(default=False)
     aviation_role = models.BooleanField(default=False)
-
-    #INDUSTRY
 
     def __str__(self):
           return self.name
@@ -75,12 +74,15 @@ class Certification(models.Model):
           return self.certificate
 
 
+
 class Award(models.Model):
     candidate = models.ForeignKey(Candidate, related_name="awards", on_delete=models.CASCADE)
     award = models.TextField(null=False)
     
     def __str__(self):
           return self.award
+
+
 
 class Skill(models.Model):
     candidate = models.ForeignKey(Candidate, related_name="skills", on_delete=models.CASCADE)
@@ -100,10 +102,9 @@ class Experience(models.Model):
     start_date = models.DateField(default=timezone.now, null=True, blank=True)
     end_date = models.DateField(default=timezone.now, null=True, blank=True)
 
-    
-
     def __str__(self):
           return self.role
+
 
 
 class JobDescription(models.Model):

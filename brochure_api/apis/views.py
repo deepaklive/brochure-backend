@@ -18,7 +18,14 @@ class CourseViewSet(viewsets.ModelViewSet):
 class CandidateViewset(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
+    
+    def get_queryset(self):
+        queryset = Candidate.objects.all()
+        candidateId = self.request.query_params.get('candidateId')
 
+        queryset = queryset.filter(id_email__exact=candidateId)
+        
+        return queryset
 
 class CompetenciesViewset(viewsets.ModelViewSet):
     queryset = Competencies.objects.all()
