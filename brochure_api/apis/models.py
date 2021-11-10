@@ -114,3 +114,64 @@ class JobDescription(models.Model):
     def __str__(self):
           return self.jd
 
+
+class Role(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name="role", on_delete=models.CASCADE)
+
+    administration = models.BooleanField(default=False)
+    aviation_role = models.BooleanField(default=False)
+    business_development = models.BooleanField(default=False)
+    facility_management= models.BooleanField(default=False)
+    finance = models.BooleanField(default=False)
+    hospital_administration = models.BooleanField(default=False)
+    hrm = models.BooleanField(default=False)
+    iot_blockchain_datascience = models.BooleanField(default=False)
+    strategy_management = models.BooleanField(default=False)
+    operations = models.BooleanField(default=False)
+    product_management = models.BooleanField(default=False)
+    project_management = models.BooleanField(default=False)
+    qa_qc = models.BooleanField(default=False)
+    scm = models.BooleanField(default=False)
+    security = models.BooleanField(default=False)
+    technical_content_writing = models.BooleanField(default=False)
+    marine_weapons_systems = models.BooleanField(default=False)
+    employee_relations = models.BooleanField(default=False)
+    occupational_safety = models.BooleanField(default=False)
+    legal_compliance = models.BooleanField(default=False)
+    education_org = models.BooleanField(default=False)
+    it_ites = models.BooleanField(default=False)
+    
+    
+    def __str__(self):
+          return self.administration
+
+
+
+class Industry(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name="industry", on_delete=models.CASCADE)
+
+    avionics = models.BooleanField(default=False)
+    aviation = models.BooleanField(default=False)
+    automobile= models.BooleanField(default=False)
+    consultant= models.BooleanField(default=False)
+    cyber_security= models.BooleanField(default=False)
+    defence_sector= models.BooleanField(default=False)
+    e_commerce= models.BooleanField(default=False)
+    fmcg= models.BooleanField(default=False)
+    health_care= models.BooleanField(default=False)
+    infra= models.BooleanField(default=False)
+    it_ites = models.BooleanField(default=False)
+    logistics = models.BooleanField(default=False)
+    pharma_biotech = models.BooleanField(default=False)
+    r_and_d = models.BooleanField(default=False)
+    service_sector= models.BooleanField(default=False)
+    ship_building= models.BooleanField(default=False)
+    social_service_sector= models.BooleanField(default=False)
+    telecom= models.BooleanField(default=False)
+    training= models.BooleanField(default=False)
+    education= models.BooleanField(default=False)
+    semiconductor_design_fab= models.BooleanField(default=False)
+    weapon_system= models.BooleanField(default=False)
+    
+    def __str__(self):
+          return self.aviation
