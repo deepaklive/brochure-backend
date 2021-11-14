@@ -24,7 +24,7 @@ class CandidateViewset(viewsets.ModelViewSet):
         candidateId = self.request.query_params.get('candidateId')
 
         if candidateId:
-            queryset = queryset.filter(id_email__exact=candidateId)
+            queryset = queryset.filter(id_email__iexact=candidateId)
         
         return queryset
 
@@ -37,7 +37,7 @@ class CompetenciesViewset(viewsets.ModelViewSet):
         candidateId = self.request.query_params.get('candidateId')
 
         if candidateId:
-            queryset = queryset.filter(id_email__exact=candidateId)
+            queryset = queryset.filter(candidate__exact=candidateId)
         
         return queryset
 
