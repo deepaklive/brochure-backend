@@ -34,6 +34,7 @@ class CompetenciesViewset(viewsets.ModelViewSet):
     serializer_class = CompetenciesSerializer
 
     def get_queryset(self):
+        queryset = Candidate.objects.all()
         candidateId = self.request.query_params.get('candidateId')
 
         if candidateId:
