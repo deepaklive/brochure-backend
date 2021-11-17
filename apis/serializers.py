@@ -72,13 +72,15 @@ class IndustrySerializer(serializers.ModelSerializer):
         model = Industry
         fields = fields = '__all__'
 
+
 class CommonSerializer(serializers.ModelSerializer):
-    competency = CompetenciesSerializer(source='competencies', many=True)
-    edn = EducationSerializer(source='education', many=True)
-    certificate = CompetenciesSerializer(source='certification', many=True)
-    awrd = AwardSerializer(source='awards', many=True)
-    skl = SkillSerializer(source='skills', many=True)
-    expernc = ExperienceSerializer(source='experiences', many=True)
+
+    competency = CompetenciesSerializer(source='competencies', many=True, read_only=True)
+    edn = EducationSerializer(source='education', many=True, read_only=True)
+    certificate = CompetenciesSerializer(source='certification', many=True, read_only=True)
+    awrd = AwardSerializer(source='awards', many=True, read_only=True)
+    skl = SkillSerializer(source='skills', many=True, read_only=True)
+    expernc = ExperienceSerializer(source='experiences', many=True, read_only=True)
     # rl = RoleSerializer(source='roles', many=True)
     # indst = IndustrySerializer(source='industries', many=True)
 

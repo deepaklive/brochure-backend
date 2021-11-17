@@ -133,3 +133,4 @@ class IndustryViewset(viewsets.ModelViewSet):
 class CommonViewset(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CommonSerializer
+    allowed_methods = ['GET']
