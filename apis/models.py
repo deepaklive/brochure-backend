@@ -41,6 +41,39 @@ class Candidate(models.Model):
     it_role = models.BooleanField(default=False)
     aviation_role = models.BooleanField(default=False)
 
+    @property
+    def competecy(self):
+        return Competencies.object.filter(candidate__id = self.id)
+
+    @property
+    def education(self):
+        return Education.object.filter(candidate__id = self.id)
+
+    @property
+    def certification(self):
+        return Certification.object.filter(candidate__id = self.id)
+
+    @property
+    def awards(self):
+        return Award.object.filter(candidate__id = self.id)
+
+    @property
+    def skills(self):
+        return Skill.object.filter(candidate__id = self.id)
+
+    @property
+    def experiences(self):
+        return Experience.object.filter(candidate__id = self.id)
+
+    # @property
+    # def roles(self):
+    #     return Role.object.filter(candidate__id = self.id)
+
+    # @property
+    # def industries(self):
+    #     return Industry.object.filter(candidate__id = self.id)
+
+
     def __str__(self):
           return self.name
 
