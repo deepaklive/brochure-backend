@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Course(models.Model):
     course_code = models.CharField(max_length=25, null=False)
-    course_name = models.CharField(max_length=100, null=False)
+    course_name = models.CharField(max_length=150, null=False)
     institute_name = models.CharField(max_length=100, null=False)
     institute_location = models.CharField(max_length=50, null=False)
     start_date = models.DateField(default=timezone.now)
