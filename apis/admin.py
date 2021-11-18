@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course, Candidate, Competencies, Education
+from .models import Course, Candidate, Competencies, Education, Photos
 from .models import Certification, Award, Skill, Experience
 from .models import JobDescription
 
@@ -15,3 +15,4 @@ admin.site.register(Award)
 admin.site.register(Skill)
 admin.site.register(Experience)
 admin.site.register(JobDescription)
+admin.site.register(Photos)
