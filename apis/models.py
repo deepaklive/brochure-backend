@@ -78,6 +78,11 @@ class Candidate(models.Model):
           return self.name
 
 
+class Photos(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name="photo", on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='images/')
+
+
 class Competencies(models.Model):
     candidate = models.ForeignKey(Candidate, related_name="competencies", on_delete=models.CASCADE)
     core_competencies = models.CharField(max_length=50, null=False)
