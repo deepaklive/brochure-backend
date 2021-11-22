@@ -1,15 +1,25 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 
-from .models import Course, Candidate, Competencies, Education
+from .models import Course, Candidate, Competencies, Education, Role
 from .models import Certification, Award, Skill, Experience
 from .models import JobDescription, Industry
 
-from .serializers import CourseSerializer, CandidateSerializer, CompetenciesSerializer, EducationSerializer
+from .serializers import CourseSerializer, CandidateSerializer, CompetenciesSerializer, EducationSerializer, RoleSerializer
 from .serializers import CertificationSerializer, AwardSerializer, SkillSerializer, ExperienceSerializer
-from .serializers import JobDescriptionSerializer, IndustrySerializer, CommonSerializer
+from .serializers import JobDescriptionSerializer, IndustrySerializer, CommonSerializer, UserSerializer
 
-# Create your views here.
+from django.conf import settings
+from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import User
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -129,6 +139,14 @@ class IndustryViewset(viewsets.ModelViewSet):
 
         return queryset
 
+
+class IndustryViewset(viewsets.ModelViewSet):
+    queryset = Industry.objects.all()
+    serializer_class = IndustrySerializer
+
+class RoleViewset(viewsets.ModelViewSet):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
 
 class CommonViewset(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()

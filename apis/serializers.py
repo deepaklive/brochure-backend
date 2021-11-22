@@ -6,6 +6,13 @@ from .models import Course, Candidate, Competencies, Education, Role
 from .models import Certification, Award, Skill, Experience
 from .models import JobDescription, Industry
 
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.Serializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 # User
 class CourseSerializer(serializers.ModelSerializer):
@@ -17,7 +24,7 @@ class CourseSerializer(serializers.ModelSerializer):
 class CandidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidate
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class CompetenciesSerializer(serializers.ModelSerializer):
@@ -29,61 +36,60 @@ class CompetenciesSerializer(serializers.ModelSerializer):
 class EducationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Education
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certification
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class AwardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Award
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        fields = fields = '__all__'
+        fields = '__all__'
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class JobDescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobDescription
-        fields = fields = '__all__'
+        fields = '__all__'
 
 
 class IndustrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Industry
-        fields = fields = '__all__'
-
+        fields = '__all__'
+        
 
 class CommonSerializer(serializers.ModelSerializer):
 
-    competency = CompetenciesSerializer(source='competencies', many=True, read_only=True)
-    edn = EducationSerializer(source='education', many=True, read_only=True)
-    certificate = CompetenciesSerializer(source='certification', many=True, read_only=True)
-    awrd = AwardSerializer(source='awards', many=True, read_only=True)
-    skl = SkillSerializer(source='skills', many=True, read_only=True)
-    expernc = ExperienceSerializer(source='experiences', many=True, read_only=True)
+    competency = CompetenciesSerializer(source='competencies', many=True)
+    edn = EducationSerializer(source='education', many=True)
+    certificate = CompetenciesSerializer(source='certification', many=True)
+    awrd = AwardSerializer(source='awards', many=True)
+    skl = SkillSerializer(source='skills', many=True)
+    expernc = ExperienceSerializer(source='experiences', many=True)
     # rl = RoleSerializer(source='roles', many=True)
     # indst = IndustrySerializer(source='industries', many=True)
-
     class Meta:
         model = Candidate
         fields = [

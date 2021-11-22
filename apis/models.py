@@ -65,14 +65,13 @@ class Candidate(models.Model):
     def experiences(self):
         return Experience.object.filter(candidate__id = self.id)
 
-    # @property
-    # def roles(self):
-    #     return Role.object.filter(candidate__id = self.id)
+    @property
+    def roles(self):
+        return Role.object.filter(candidate__id = self.id)
 
-    # @property
-    # def industries(self):
-    #     return Industry.object.filter(candidate__id = self.id)
-
+    @property
+    def industries(self):
+        return Industry.object.filter(candidate__id = self.id)
 
     def __str__(self):
           return self.name

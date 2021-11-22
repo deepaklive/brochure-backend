@@ -3,7 +3,7 @@ from rest_framework import routers
 
 from .views import CourseViewSet, CandidateViewset, CompetenciesViewset, EducationViewset
 from .views import CertificationViewset, AwardViewset, SkillViewset, ExperienceViewset
-from .views import JobDescriptionViewset, CommonViewset
+from .views import JobDescriptionViewset, CommonViewset, UserViewSet
 
 router = routers.DefaultRouter()
 
@@ -17,6 +17,7 @@ router.register(r'skill', SkillViewset)
 router.register(r'experience', ExperienceViewset)
 router.register(r'jd', JobDescriptionViewset)
 router.register(r'commonview', CommonViewset, basename='commonview')
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [

@@ -6,6 +6,7 @@ from .models import JobDescription
 
 
 # Register your models here.
+
 admin.site.register(Course)
 admin.site.register(Candidate)
 admin.site.register(Competencies)
