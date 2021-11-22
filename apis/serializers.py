@@ -9,7 +9,7 @@ from .models import JobDescription, Industry
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
