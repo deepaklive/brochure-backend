@@ -1,20 +1,24 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from rest_framework.relations import ManyRelatedField
 
 from .models import Course, Candidate, Competencies, Education, Role
 from .models import Certification, Award, Skill, Experience
-from .models import JobDescription, Industry
-
-from django.contrib.auth.models import User
+from .models import JobDescription, Industry, User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'gender',
+            'mobile'
+        ]
 
-# User
+
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course

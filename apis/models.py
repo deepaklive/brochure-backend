@@ -1,7 +1,92 @@
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.core.checks.messages import Error
 from django.db import models
+from django.db.models.expressions import F
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
-# Create your models here.
+
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extrafields):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(email=self.normalize_email(email),)
+        user = self.model(email=email, **extrafields)
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_staffuser(self, email, password, **extrafields):
+        """
+        Creates and saves a staff user with the given email and password.
+        """
+        user = self.create_user(email, password=password, **extrafields)
+        user.staff = True
+        user.verified=True
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+        """
+        Creates and saves a superuser with the given email and password.
+        """
+        user = self.create_user(email,password=password,)
+        user.staff = True
+        user.admin = True
+        user.verified=True
+        user.save(using=self._db)
+        return user
+
+
+
+class User(AbstractBaseUser):    
+    def minpassword(value):
+        if len(value) < 8:
+            raise Error('password must be minimum 8 Char')
+    def clean(self):
+        if (self.password != self.repeat_password):
+            raise Error('Password doesnt match')
+        if (self.email):
+            try:
+                User.objects.get(email = self.email)
+                raise Error("Email already ")
+            except Exception as e:
+                return e
+        if self.username:
+            try:
+                User.objects.get(username = self.username)
+                raise Error("User name already taken")
+            except Exception as e:
+                return e
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin
+    
+    email = models.EmailField(_('email address'), unique=True)
+    first_name = models.TextField(max_length=50, blank=False, null=False)
+    last_name = models.TextField(max_length=50, blank=False, null= False)
+    gender = models.TextField(blank=False, null=False)
+    mobile = models.IntegerField(blank=False, null=False)
+    USERNAME_FIELD = 'email'
+
+    objects = UserManager()
+    
+    def __str__(self):
+          return self.email
+
+
+
 
 class Course(models.Model):
     course_code = models.CharField(max_length=25, null=False)

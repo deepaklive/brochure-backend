@@ -1,23 +1,32 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import response, viewsets
+from rest_framework.response import Response
 
 from .models import Course, Candidate, Competencies, Education, Role
 from .models import Certification, Award, Skill, Experience
 from .models import JobDescription, Industry
+#, User
 
 from .serializers import CourseSerializer, CandidateSerializer, CompetenciesSerializer, EducationSerializer, RoleSerializer
 from .serializers import CertificationSerializer, AwardSerializer, SkillSerializer, ExperienceSerializer
-from .serializers import JobDescriptionSerializer, IndustrySerializer, CommonSerializer, UserSerializer
+from .serializers import JobDescriptionSerializer, IndustrySerializer, CommonSerializer
+#, UserSerializer
 
 from django.conf import settings
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.models import User
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# class UserViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+
+    # def list(self, request, *args, **kwargs):
+    #     return super().list(self, request, *args, **kwargs)
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     return Response(None)
+
 
 
 class CourseViewSet(viewsets.ModelViewSet):
